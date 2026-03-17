@@ -42,6 +42,28 @@ python transform.py
 python test.py
 ```
 
+## Fitness Chatbot UI
+
+An interactive fitness-only chatbot UI is available in `chatbot/` and can trigger the image transformation flow directly from chat.
+
+Install chatbot UI dependency:
+
+```bash
+pip install -r chatbot/requirements.txt
+```
+
+Run from project root:
+
+```bash
+streamlit run chatbot/app.py
+```
+
+In chat, use:
+
+- `/help`
+- `/transform muscle_gain`
+- `/transform fat_loss`
+
 ## CLI Examples
 
 Generate one image:
