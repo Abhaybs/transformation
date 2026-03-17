@@ -73,6 +73,36 @@ The app will require this token in the sidebar before use.
 - `/transform fat_loss`
 
 ## Notes
+```mermaid
+graph TD
+    subgraph User_Interface [User Interface Layer]
+        A[Streamlit Chatbot / CLI] -->|Upload Image| B(Image Validation)
+        A -->|Select Goal| C{Goal: Muscle Gain / Fat Loss}
+    end
+
+    subgraph Security_Guardrails [Security & Logic Layer]
+        B -->|Check Format & Size| D[security.py]
+        D -->|Sanitized Input| E[transform_service.py]
+        C -->|Load Preset Prompts| F[goals.py]
+    end
+
+    subgraph AI_Pipeline [Inference Layer]
+        F -->|Positive/Negative Prompts| G[pipeline.py]
+        E -->|Init Image + Settings| G
+        G -->|Stable Diffusion img2img| H[Diffusers / Torch Runtime]
+        H -->|Generate Latent| I[DPM-Solver++ Scheduler]
+    end
+
+    subgraph Output_Layer [Results Layer]
+        I -->|Final Image| J[image_io.py]
+        J -->|Save to generated/| K[Display Result in UI]
+        E -->|Calculate Latency| L[Benchmark Logs]
+    end
+
+    style User_Interface fill:#f9f,stroke:#333,stroke-width:2px
+    style AI_Pipeline fill:#bbf,stroke:#333,stroke-width:2px
+    style Security_Guardrails fill:#dfd,stroke:#333,stroke-width:2px
+```
 
 - The app is configured to run the image pipeline on CPU by default.
 - Generated images are saved in `chatbot/generated/`.
