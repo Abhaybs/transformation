@@ -1,0 +1,22 @@
+# Python virtual environments
+venv/
+.venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Generated outputs
+output_*.png
+fitness_benchmark_results.png
+physique_transform_results.png
+transformation_benchmark.png
