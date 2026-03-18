@@ -86,14 +86,14 @@ python -m fitness_ai.cli generate --input image2.jpg --output out.png --goal mus
 graph TD
     A[User Input Image] --> B[OpenPose: Extract Body Pose]
     A --> C[IP-Adapter: Extract Identity Features]
-    
+
     B --> D[ControlNet: Pose Conditioning]
     C --> E[Identity Conditioning]
-    
+
     D --> F[Stable Diffusion Model]
     E --> F
-    G[Text Prompt (Transformation Type)] --> F
-    
+    G[Text Prompt - Transformation Type] --> F
+
     F --> H[Final Transformed Image]
 ```
 
