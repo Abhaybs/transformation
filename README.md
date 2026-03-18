@@ -4,7 +4,6 @@ This project uses Stable Diffusion img2img to generate goal-based fitness transf
 
 ## What Improved
 
-- Modular architecture for interview-ready explanation.
 - Goal presets with explicit identity-preserving prompts.
 - Centralized model runtime config (device, dtype, scheduler, safety checker toggle).
 - Reusable transformation service and benchmarking service.
