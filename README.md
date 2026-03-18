@@ -82,23 +82,20 @@ Use custom tuning parameters:
 ```bash
 python -m fitness_ai.cli generate --input image2.jpg --output out.png --goal muscle_gain --strength 0.32 --guidance-scale 8.0 --steps 28 --prompt-suffix "natural lighting"
 ```
-
-## Interview Talking Points
-
-1. Separation of concerns:
-   - Pipeline setup is isolated from business logic.
-   - Prompt strategy is isolated from execution.
-   - Benchmarking is isolated from single-image generation.
-
-2. Identity preservation strategy:
-   - Low to medium strength values.
-   - Face-preserving goal prompts and strong negative prompts.
-   - Optional fixed seed for reproducibility.
-
-3. Extensibility:
-   - Add a new goal by editing one dictionary in `fitness_ai/goals.py`.
-   - Switch model with `--model-id`.
-   - Move from CPU to GPU with `--device cuda`.
+```mermaid
+graph TD
+    A[User Input Image] --> B[OpenPose: Extract Body Pose]
+    A --> C[IP-Adapter: Extract Identity Features]
+    
+    B --> D[ControlNet: Pose Conditioning]
+    C --> E[Identity Conditioning]
+    
+    D --> F[Stable Diffusion Model]
+    E --> F
+    G[Text Prompt (Transformation Type)] --> F
+    
+    F --> H[Final Transformed Image]
+```
 
 ## Notes
 
